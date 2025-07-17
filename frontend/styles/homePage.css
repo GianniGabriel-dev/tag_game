@@ -15,13 +15,14 @@
 
 .imageContainer {
   position: relative;
-  width: 250px;     
-  height: 250px;    
+  width: 300px;     
+  height: 300px;    
   background-color: #00213771;
   overflow: hidden; 
   cursor: pointer;
   border-radius: 12px;
-  border: 2px solid white
+  border: 2px solid white;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .imageContainer img {
@@ -31,18 +32,59 @@
   object-fit: cover; 
   filter: brightness(80%) opacity(0.6);
   z-index: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
+
+
 
 .imageContainer p {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 2rem;
   font-weight: bold;
   text-align: center;
   z-index: 1;
   margin: 0; 
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
 
+.imageContainer .nameGame {
+  font-size: 2rem;
+}
 
+.playGame{
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-size: 3rem;
+}
+
+.imageContainer:hover img,
+.imageContainer:hover .nameGame
+{
+  opacity: 0;
+  visibility: hidden;
+}
+.imageContainer:hover .playGame
+{
+  opacity: 1;
+
+}
+.imageContainer:hover{
+      background-color: #13508a;
+  border-color: #00d8ff;
+  box-shadow: 0 0 10px #00d8ff88;
+}
+
+@media (max-width: 680px) {
+  .imagesContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+.imageContainer{
+    height: 350px;
+    width: 350px;
+}
 }
