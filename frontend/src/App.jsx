@@ -12,8 +12,8 @@ export function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage/>} />
-          <Route path="/:selected-game" element={<PlayPage />} />
-          <Route path="/:selected-game/leaderboard" element={<LeaderboardPage />} />
+          <Route path="/:selectedGame" element={<PlayPage />} />
+          <Route path="/:selectedGame/leaderboard" element={<LeaderboardPage />} />
         </Routes>
       </main>
 
