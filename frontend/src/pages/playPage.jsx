@@ -1,12 +1,17 @@
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import "/styles/playPage.css"
 import { useState } from "react";
 import { imagesToFind } from "../../utils/ArrayImages.js";
 import { Timer } from "../components/timer.jsx";
+import { useEffect } from "react";
 
 
 export function PlayPage() {
   const {selectedGame} = useParams();
+  //use location accede la  infomacion que manda la pagian home al hacer click en una iamgen
+  const location = useLocation();
+  const gameId = location.state?.game_id;
+
   console.log(selectedGame)
   const formatedSelectedGame = selectedGame.replace(/-/g, " ");
   const gameData = imagesToFind.find(game=> game.id === selectedGame)  
@@ -14,6 +19,25 @@ export function PlayPage() {
   console.log(gameData)
   console.log(gameData.characters[0].img)
   const [message, setMessage]= useState("")
+  const [fetchedData, setFetchedData]= useState(null)
+
+  useEffect(()=>{
+    const fetchGameData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/${gameId}`);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setFetchedData(data); 
+      } catch (error) {
+        console.error("Error fetching game data:", error);
+      }
+    };
+
+    fetchGameData();
+  },[gameId])
+  console.log(fetchedData)
 
  const handleImageClick = (event) => {
     const img = event.target;

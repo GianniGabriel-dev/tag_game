@@ -1,7 +1,7 @@
 export const smallImages = [
-    { name:"Ghibli Bathhouse", img: "/ghibi-small.jpeg", linkName:"Ghibli-Bathhouse"},
-    { name:"Dragon Island", img: "/island-small.png", linkName:"Dragon-Island"},
-    { name:"Pokemon", img: "/pokemon-small.png", linkName:"Pokemon"}
+    { name:"Ghibli Bathhouse", img: "/ghibi-small.jpeg", linkName:"Ghibli-Bathhouse", game_id:1},
+    { name:"Dragon Island", img: "/island-small.png", linkName:"Dragon-Island", game_id:2},
+    { name:"Pokemon", img: "/pokemon-small.png", linkName:"Pokemon", game_id:3}
 ]
 
 export const imagesToFind = [

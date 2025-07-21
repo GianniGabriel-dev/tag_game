@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -14,11 +13,11 @@ datasource db {
   url      = env("DB_URL")
 }
 
-model Game {
+model Games {
   game_id    Int          @id @default(autoincrement())
   game_name  String       @db.VarChar(100)
 
-  characters Character[]
+  characters Characters[]
   scores     Leaderboard[]
 }
 
@@ -28,10 +27,10 @@ model Leaderboard {
   time_score  Int
 
   game_id Int?
-  game    Game? @relation(fields: [game_id], references: [game_id])
+  games    Games? @relation(fields: [game_id], references: [game_id])
 }
 
-model Character {
+model Characters {
   id             Int     @id @default(autoincrement())
   character_name String? @db.VarChar(100)
 
@@ -39,5 +38,5 @@ model Character {
   y       Decimal @db.Decimal(5, 2)
 
   game_id Int?
-  game    Game? @relation(fields: [game_id], references: [game_id])
+  games    Games? @relation(fields: [game_id], references: [game_id])
 }
