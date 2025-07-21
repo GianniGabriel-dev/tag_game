@@ -7,7 +7,7 @@ export function Timer({ initialMinutes = 0, initialSeconds = 0 }) {
     const interval = setInterval(() => {
       setTotalTime((prevTime) => prevTime + 1);
     }, 1000);
-
+    console.log
     return () => clearInterval(interval); 
   }, []);
 

@@ -13,6 +13,8 @@ pids
 *.pid
 *.seed
 *.pid.lock
+/generated/prisma
+
 
 # Optional: Ignore environment files
 .env
