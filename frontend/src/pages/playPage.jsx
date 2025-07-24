@@ -4,6 +4,8 @@ import { useState } from "react";
 import { imagesToFind } from "../../utils/ArrayImages.js";
 import { Timer } from "../components/timer.jsx";
 import { useEffect } from "react";
+import { checkIfCharacterFound } from "../../utils/gameLogic.js";
+import { Dialog } from "../components/dialog.jsx";
 
 
 export function PlayPage() {
@@ -12,14 +14,13 @@ export function PlayPage() {
   const location = useLocation();
   const gameId = location.state?.game_id;
 
-  console.log(selectedGame)
-  const formatedSelectedGame = selectedGame.replace(/-/g, " ");
   const gameData = imagesToFind.find(game=> game.id === selectedGame)  
 
   console.log(gameData)
-  console.log(gameData.characters[0].img)
   const [message, setMessage]= useState("")
-  const [fetchedData, setFetchedData]= useState(null)
+  const [fetchedData, setFetchedData]= useState({})
+  const [foundCharacters, setFoundCharacters] = useState([]);
+  const [dialogOpen, setDialogOpen] = useState(false)
 
   useEffect(()=>{
     const fetchGameData = async () => {
@@ -39,6 +40,11 @@ export function PlayPage() {
   },[gameId])
   console.log(fetchedData)
 
+  useEffect(()=>{
+    if (foundCharacters.length === 3) setDialogOpen(true)
+    console.log(foundCharacters.length)
+  },[foundCharacters])
+
  const handleImageClick = (event) => {
     const img = event.target;
     
@@ -55,15 +61,21 @@ export function PlayPage() {
     const formattedX = percentX.toFixed(2);
     const formattedY = percentY.toFixed(2);
 
-    setMessage(`Has hecho clic en: ${formattedX}% X, ${formattedY}% Y`);
+    //se llama a la funcion que comprueba si el click esta cerca de alguna coordenada de un personaje, en caso de que si se añade a foundCharacters, la tolerancia es
+    //el margen de error que se le da al click
+    checkIfCharacterFound(formattedX, formattedY, fetchedData, foundCharacters, setFoundCharacters, setMessage, 1)
+    console.log(foundCharacters.length)
   };
 
   if(!gameData) return <p>we can't find that game</p>
 
   return (
     <>
+        {dialogOpen && (
+          <Dialog isOpen={dialogOpen} onClose={() => setDialogOpen(false)} />
+        )}
         <section className="gameMenu">
-            <h2>{formatedSelectedGame}🎮</h2>
+            <h2>{gameData.name}🎮</h2>
             <section className="stickyMenus">
               <article className="charactersContainer">
                 <ul>
