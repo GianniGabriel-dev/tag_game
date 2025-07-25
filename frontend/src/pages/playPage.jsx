@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import "/styles/playPage.css"
 import { useState } from "react";
 import { imagesToFind } from "../../utils/ArrayImages.js";
@@ -9,6 +9,7 @@ import { Dialog } from "../components/dialog.jsx";
 
 
 export function PlayPage() {
+  const navigate = useNavigate()
   const {selectedGame} = useParams();
   //use location accede la  infomacion que manda la pagian home al hacer click en una iamgen
   const location = useLocation();
@@ -99,7 +100,7 @@ async function handleStartGame() {
         {dialogOpen && (
           <Dialog 
           isOpen={dialogOpen} 
-          onClose={() => setDialogOpen(false)} 
+          onClose={() => {setDialogOpen(false); navigate("/")}} 
           gameId = {gameId}
           totalTime={getTotalTime(startedAt, endedAt)}
           />
