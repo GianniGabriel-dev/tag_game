@@ -4,7 +4,7 @@ import { useState } from "react";
 import { imagesToFind } from "../../utils/ArrayImages.js";
 import { Timer } from "../components/timer.jsx";
 import { useEffect } from "react";
-import { checkIfCharacterFound } from "../../utils/gameLogic.js";
+import { checkIfCharacterFound, endGame, getTotalTime, startGame } from "../../utils/gameLogic.js";
 import { Dialog } from "../components/dialog.jsx";
 
 
@@ -13,7 +13,23 @@ export function PlayPage() {
   //use location accede la  infomacion que manda la pagian home al hacer click en una iamgen
   const location = useLocation();
   const gameId = location.state?.game_id;
+ //logica para guardar el tiempo de inicio y fin del juego de manera segura haciendo peticiones al backend
+  const [startedAt, setStartedAt]=useState("")
+  const [endedAt, setEndedAt]=useState("")
 
+async function handleStartGame() {
+  const data = await startGame(gameId);
+  setStartedAt(data.startedAt)
+}
+
+  
+  async function handleEndGame() {
+  const data = await endGame(gameId);
+  setEndedAt(data.endedAt)
+  console.log(endedAt)
+}
+
+ 
   const gameData = imagesToFind.find(game=> game.id === selectedGame)  
 
   console.log(gameData)
@@ -37,13 +53,22 @@ export function PlayPage() {
     };
 
     fetchGameData();
+    handleStartGame()
   },[gameId])
   console.log(fetchedData)
+  console.log(startedAt)
 
   useEffect(()=>{
-    if (foundCharacters.length === 3) setDialogOpen(true)
-    console.log(foundCharacters.length)
-  },[foundCharacters])
+    const finalizeGame = async () => {
+      if (foundCharacters.length === 3) {
+        await handleEndGame(gameId);
+
+        setDialogOpen(true);
+      }
+    };
+
+    finalizeGame();
+  },[foundCharacters.length, gameId])
 
  const handleImageClick = (event) => {
     const img = event.target;
@@ -70,9 +95,14 @@ export function PlayPage() {
   if(!gameData) return <p>we can't find that game</p>
 
   return (
-    <>
+    <> 
         {dialogOpen && (
-          <Dialog isOpen={dialogOpen} onClose={() => setDialogOpen(false)} />
+          <Dialog 
+          isOpen={dialogOpen} 
+          onClose={() => setDialogOpen(false)} 
+          gameId = {gameId}
+          totalTime={getTotalTime(startedAt, endedAt)}
+          />
         )}
         <section className="gameMenu">
             <h2>{gameData.name}🎮</h2>
@@ -85,7 +115,7 @@ export function PlayPage() {
                 </ul>
                 <p className="message">{message}</p>
               </article>
-              <Timer/>
+              <Timer dialogOpen={dialogOpen}/>
             </section>
 
             <img onClick={handleImageClick} src={`/${selectedGame}.png`} alt={`Big image of a ${selectedGame}`} />

@@ -12,7 +12,7 @@
 }
 
 .dialog-content {
-  background-color: #fff;
+  background-color: #01233b;
   padding: 2rem;
   border-radius: 1rem;
   max-width: 400px;
@@ -30,7 +30,7 @@
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.1rem;
   border-radius: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
