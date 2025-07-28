@@ -5,7 +5,7 @@ import "/styles/homePage.css";
 export function HomePage() {
   const navigate = useNavigate();
 
-  //al hacer click en la imagfen te lleva al jeugo correspondiente y se le pasa el id para usarlo luego en la comunicación con la API
+  //al hacer click en la imagen te lleva al juego correspondiente y se le pasa el id para usarlo luego en la comunicación con la API
   return (
     <>
       <section className="imagesContainer">
@@ -13,7 +13,7 @@ export function HomePage() {
           <article
             onClick={() =>
               navigate(`/${image.linkName}`, {
-                state: { game_id: image.game_id },
+                state: { game_id: image.game_id }, //se pasa el id
               })
             }
             className="imageContainer"

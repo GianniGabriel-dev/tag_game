@@ -19,5 +19,33 @@ export const saveScore = async (gameId, time_score, player_name)=>{
     }
   })
 }
+ export const getLeaderboard = async (gameId)=>{
+    return await prisma.leaderboard.findMany({
+    where: {
+      game_id: gameId,
+    },
+    orderBy:{
+      time_score: 'asc'
+    }
+  });
+ }
+
+export const secondsToTime = (seconds)=>{
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return {
+    minutes: String(minutes).padStart(2, '0'),
+    seconds: String(remainingSeconds).padStart(2, '0')
+  };
+}
+
+export const getAllGames = async()=>{
+  return await prisma.games.findMany({
+    select:{
+      game_id: true,
+      game_name:true
+    }
+  });
+}
 
 

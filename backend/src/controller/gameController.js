@@ -1,4 +1,4 @@
-import { getGameData, saveScore } from "../services/gameService.js";
+import { getAllGames, getGameData, getLeaderboard, saveScore, secondsToTime } from "../services/gameService.js";
 
 export const getGame = async (req, res) => {
   const gameId = parseInt(req.params.gameId, 10); 
@@ -40,4 +40,37 @@ export const endGameTime = (req, res)=>{
     const endedAt = new Date().toTimeString().split(" ")[0]
   console.log(endedAt)
   return res.status(200).json({endedAt})
+}
+
+export const getLeaderboardPage = async (req, res)=>{
+  const gameId = parseInt(req.params.gameId, 10); 
+  try {
+    const leaderboard = await getLeaderboard(gameId);
+    const formattedLeaderboard = leaderboard.map(entry=>({
+      playerName: entry.player_name,
+      timeScore: secondsToTime(entry.time_score),
+      gameId: entry.game_id,
+      playerId: entry.player_id 
+    }))
+
+    console.log(leaderboard)
+    return res.json({
+      leaderboard: formattedLeaderboard
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Error fetching leaderboard" });
+  }
+}
+
+export const getGames = async (req, res)=>{
+  const allGames= await getAllGames()
+  return res.json({
+    allGames: allGames.map(game =>{
+      return {
+        gameId: game.game_id,
+        gameName: game.game_name
+      }
+    })
+  })
 }
