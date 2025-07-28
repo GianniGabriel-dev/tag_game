@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
+import { Slider } from "../components/slider.jsx";
 import "/styles/leaderboard.css"
 
 export function LeaderboardPage() {
@@ -29,7 +30,7 @@ export function LeaderboardPage() {
       }
     };
     fetchLeaderboard()
-  },[])
+  },[selectedGame])
   console.log(fetchedLeaderboard)
   console.log(fetchedGames)
 
@@ -46,13 +47,13 @@ export function LeaderboardPage() {
           </div>
         ) : fetchedLeaderboard?.leaderboard?.length === 0 ? (
           <div className="noScores">
-            <h3>{gameName}</h3>
+            <Slider gameName={gameName} fetchedGames={fetchedGames}/>
             <p>There are no scores yet</p>
           </div>
 
         ) : (
           <>
-            <h3>{gameName}</h3>
+            <Slider gameName={gameName} fetchedGames={fetchedGames}/>
             <article className="leaderboardTable">
               <div className="tableFieldsNames">
                 <p>Player names</p>
