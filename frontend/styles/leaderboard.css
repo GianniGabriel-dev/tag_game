@@ -1,0 +1,98 @@
+.leaderboardContainer{
+    display:flex;
+    flex-direction: column;
+    align-items: center ;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    background-color: #314459;
+    border-radius: 2rem;
+    max-width: 800px;
+    min-height: 300px;
+    width:100%;
+    border: 1px solid #00d8ff;
+  box-shadow: 0 0 10px #00d8ff88;
+}
+h3{
+    font-size:  2.5rem;
+    color: #00d8ff;
+    font-weight: 700;
+    margin:0;
+}
+
+.leaderboardTable{
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
+.tableFieldsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
+}
+.tableFieldsNames{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.tableFieldsNames p{
+    width: 100%;
+    text-align: center;
+    color: #1da9c2;
+    font-size: 2rem;
+    font-weight: 900;
+    margin:0;
+}
+
+.tableFields{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+
+}
+.tableFields p{
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin:0;
+
+}
+
+.noScores{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+.noScores p{
+    font-size:  2.5rem;
+    color: #1da9c2;
+    font-weight: 700;
+    text-align: center;
+}
+
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; 
+  width: 100%;
+}
+
+.spinner {
+  border: 6px solid #00d8ff33; 
+  border-top: 6px solid #00d8ff; 
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

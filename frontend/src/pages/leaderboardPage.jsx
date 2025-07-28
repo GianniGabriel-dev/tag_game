@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
+import "/styles/leaderboard.css"
 
 export function LeaderboardPage() {
   const {selectedGame} = useParams();
   console.log(selectedGame)
   const [fetchedLeaderboard, setFetchedLeaderboard]= useState({})
   const [fetchedGames, setfetchedGames]= useState({})
+  const [loading, setLoading] = useState(true)
 
   //se obtiene la leaderboard de un juego especifico y todos los juegos para mostar el nombre en la leaderboard
   useEffect(()=>{
@@ -22,10 +24,12 @@ export function LeaderboardPage() {
         setfetchedGames(gamesData)
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally{
+        setLoading(false)
       }
     };
     fetchLeaderboard()
-  },[selectedGame])
+  },[])
   console.log(fetchedLeaderboard)
   console.log(fetchedGames)
 
@@ -35,13 +39,37 @@ export function LeaderboardPage() {
   return (
     <>
         {/*Como se hace una peticion al backend se usan interrogaciones en los datos a mostar en la pagina para hacerlos opcionales y que no pete ya que no existen*/}
-        {fetchedLeaderboard?.leaderboard?.length === 0 ?(
-          <h2>There are no scores yet</h2>
-        ):(
-          <section className="leaderboardContianer">
-            <h2>Leaderboard of {gameName} </h2>
-          </section>
+      <section className="leaderboardContainer">
+        {loading ? (
+          <div className="loader-wrapper">
+            <div className="spinner"></div>
+          </div>
+        ) : fetchedLeaderboard?.leaderboard?.length === 0 ? (
+          <div className="noScores">
+            <h3>{gameName}</h3>
+            <p>There are no scores yet</p>
+          </div>
+
+        ) : (
+          <>
+            <h3>{gameName}</h3>
+            <article className="leaderboardTable">
+              <div className="tableFieldsNames">
+                <p>Player names</p>
+                <p>Time</p>
+              </div>
+              <article className="tableFieldsContainer">
+                {fetchedLeaderboard.leaderboard.map((player, index) => (
+                  <div className="tableFields" key={index}>
+                    <p>{player.playerName}</p>
+                    <p>{player.timeScore}</p>
+                  </div>
+                ))}
+              </article>
+            </article>
+          </>
         )}
+      </section>
     </>
   )
 }

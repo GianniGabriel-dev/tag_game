@@ -33,10 +33,11 @@ export const saveScore = async (gameId, time_score, player_name)=>{
 export const secondsToTime = (seconds)=>{
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
-  return {
-    minutes: String(minutes).padStart(2, '0'),
-    seconds: String(remainingSeconds).padStart(2, '0')
-  };
+
+  const formatMinutes= String(minutes).padStart(2, '0')
+  const formatSeconds= String(remainingSeconds).padStart(2, '0')
+
+  return `${formatMinutes} : ${formatSeconds}`
 }
 
 export const getAllGames = async()=>{

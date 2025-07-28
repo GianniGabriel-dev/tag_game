@@ -13,7 +13,7 @@ export function Dialog ({isOpen, onClose, gameId,totalTime}) {
       setError("Required field")
       return
     }
-    fetch(`http://localhost:3000/${gameId}/score`, {
+    await fetch(`http://localhost:3000/${gameId}/score`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
