@@ -13,7 +13,7 @@ export function HomePage() {
           <article
             onClick={() =>
               navigate(`/${image.linkName}`, {
-                state: { game_id: image.game_id }, //se pasa el id
+                state: { game_id: image.game_id }, //se pasa el id con el state que s un objeto para pasar datos en memoria durante la navegación
               })
             }
             className="imageContainer"

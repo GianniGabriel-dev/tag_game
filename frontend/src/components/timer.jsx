@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 
 export function Timer({ initialMinutes = 0, initialSeconds = 0, dialogOpen }) {
-  const [totalTime, setTotalTime] = useState(initialMinutes * 60 + initialSeconds);
+  const [totalTime, setTotalTime] = useState(
+    initialMinutes * 60 + initialSeconds
+  );
 
   useEffect(() => {
-    if (dialogOpen) return
+    if (dialogOpen) return;
     const interval = setInterval(() => {
       setTotalTime((prevTime) => prevTime + 1);
     }, 1000);
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, [dialogOpen]);
 
   const minutes = Math.floor(totalTime / 60);

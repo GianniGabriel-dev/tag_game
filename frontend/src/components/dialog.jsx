@@ -1,36 +1,33 @@
 import { useState } from "react";
 import "/styles/dialogWin.css";
 import { useNavigate } from "react-router-dom";
-export function Dialog ({isOpen, onClose, gameId,totalTime}) {
-   const [error, setError]= useState(null)
-   const navigate = useNavigate()
-   console.log(gameId)
+export function Dialog({ isOpen, onClose, gameId, totalTime }) {
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
   if (!isOpen) return null;
-  const handleSubmit = async (e)=>{
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const playerName = e.target.playerName.value;
-    if(!playerName){
-      setError("Required field")
-      return
+    if (!playerName) {
+      setError("Required field");
+      return;
     }
-    try{
+    try {
       await fetch(`http://localhost:3000/${gameId}/score`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        gameId,
-        score: totalTime,
-        username: playerName
-      })
-    })
-    }finally{
-      navigate(`/${gameId}/leaderboard`)
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          gameId,
+          score: totalTime,
+          username: playerName,
+        }),
+      });
+    } finally {
+      navigate(`/${gameId}/leaderboard`);
     }
-
-    
-  }
+  };
 
   return (
     <div className="dialog-overlay">
@@ -39,16 +36,16 @@ export function Dialog ({isOpen, onClose, gameId,totalTime}) {
         <form id="saveScoreForm" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="playerName">Enter your name:</label>
-            <input type="text" id="playerName" name="playerName"/>
+            <input type="text" id="playerName" name="playerName" />
           </div>
           {error && <p>{error}</p>}
-          
         </form>
         <div className="buttonsContainer">
-          <button form="saveScoreForm" type="submit">Save Score</button>
+          <button form="saveScoreForm" type="submit">
+            Save Score
+          </button>
           <button onClick={onClose}>Exit</button>
         </div>
-
       </div>
     </div>
   );

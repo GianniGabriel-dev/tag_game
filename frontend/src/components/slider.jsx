@@ -1,16 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom";
 import "/styles/slider.css";
 export function Slider({ gameName, fetchedGames }) {
-    const { selectedGame } = useParams()
-    const navigate = useNavigate()
+  const { selectedGame } = useParams();
+  const navigate = useNavigate();
 
   const totalGames = fetchedGames?.allGames?.length || 0;
-  const currentIndex = parseInt(selectedGame, 10); 
-
+  const currentIndex = parseInt(selectedGame, 10);
 
   const goLeft = () => {
     const previousGame = currentIndex - 1;
-     //mientras el indice sea mayor a 0 se le restara un indice y redigirigira al juego de la izq
+    //mientras el indice sea mayor a 0 se le restara un indice y redirigira al juego de la izq
     if (previousGame > 0) {
       navigate(`/${previousGame}/leaderboard`);
     } else {

@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import "/styles/header.css";
-import trophy from '../assets/trophy.svg';
+import trophy from "../assets/trophy.svg";
 export function Header() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
- 
   return (
     <header>
-      <h1 onClick={()=> navigate("/")}>
+      <h1 onClick={() => navigate("/")}>
         Sp
         <span>
           <img
@@ -17,7 +16,10 @@ export function Header() {
         </span>
         t <span className="itText">IT</span>
       </h1>
-      <span className="trophy-wrapper" onClick={() => navigate("/1/leaderboard")}>
+      <span
+        className="trophy-wrapper"
+        onClick={() => navigate("/1/leaderboard")}
+      >
         <img className="trophy" src={trophy} alt="Image of a trophy" />
       </span>
     </header>
