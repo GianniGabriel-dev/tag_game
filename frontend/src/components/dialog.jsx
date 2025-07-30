@@ -13,7 +13,8 @@ export function Dialog ({isOpen, onClose, gameId,totalTime}) {
       setError("Required field")
       return
     }
-    await fetch(`http://localhost:3000/${gameId}/score`, {
+    try{
+      await fetch(`http://localhost:3000/${gameId}/score`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -24,7 +25,11 @@ export function Dialog ({isOpen, onClose, gameId,totalTime}) {
         username: playerName
       })
     })
-    navigate(`/${gameId}/leaderboard`)
+    }finally{
+      navigate(`/${gameId}/leaderboard`)
+    }
+
+    
   }
 
   return (

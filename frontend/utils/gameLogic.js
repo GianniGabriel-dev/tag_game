@@ -1,16 +1,24 @@
-export const checkIfCharacterFound = (xClick, yClick, fetchedData, foundCharacters, setFoundCharacters, setMessage, tolerance) => {
+const playCorrectSound = () =>{
+  const sound= new Audio("correct.mp3")
+  sound.volume = 0.7
+  sound.play()
+}
+export const checkIfCharacterFound = (xClick, yClick, fetchedData, foundCharacters, setFoundCharacters, setMessage, setMessageClass, tolerance) => {
   for (const character of fetchedData.gameData) {
     const isXMatch = Math.abs(xClick - parseFloat(character.x)) <= tolerance;
     const isYMatch = Math.abs(yClick - parseFloat(character.y)) <= tolerance;
 
     if (isXMatch && isYMatch && !foundCharacters.includes(character.character_name)) {
-      setMessage(`¡Has encontrado a ${character.character_name}! ✅`);
+      playCorrectSound()
+      setMessage(`You have found the ${character.character_name}! ✅`);
+      setMessageClass("correct")
       setFoundCharacters(prev => [...prev, character.character_name]);
       return;
     }
   }
 
-  setMessage("Nada por aquí... 😅");
+  setMessage("Nothing here... 😅");
+  setMessageClass("incorrect")
 };
 export const startGame = async (gameId) => {
   try {

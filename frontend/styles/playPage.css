@@ -21,6 +21,11 @@ li{
     justify-content: center;
     align-items: center;
     width: 100px;
+    gap:5px
+
+}
+li p{
+    font-weight: 500;
 }
 
 ul{
@@ -34,15 +39,16 @@ ul{
 .charactersContainer{
     display: flex;
     flex-direction: column;
-    background-color:#314459 ;
+    background-color:#314459c7 ;
     border-radius: 1em;
     align-items: center;
     padding:0.8rem;
     justify-content: center;
+    gap:5px
 }
 .charactersContainer p{
     text-align: center;
-    margin: 0
+    margin: 0;
 }
 
 .gameMenu{
@@ -53,13 +59,14 @@ ul{
     width: 100%;
 }
 .timer{
-    background-color:#314459 ;
+    background-color:#314459c7 ;
     border-radius: 1em;
     width: auto;
     height: min-content;
     padding:0.8rem;
    
 }
+
 
 .stickyMenus{
     position: sticky;
@@ -72,4 +79,22 @@ ul{
     width:100%;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.message-correct {
+  font-weight: 600;
+  color: #58D58D;
+  text-shadow:
+    0 0 5px #58D58D,
+    0 0 10px #58D58D,
+    0 0 15px #58D58D;
+}
+
+.message-incorrect {
+  font-weight: 600;
+  color: #FA5252;
+  text-shadow:
+    0 0 1px #FA5252,
+    0 0 1px #FA5252,
+    0 0 1px #FA5252;
 }

@@ -86,5 +86,6 @@
 .imageContainer{
     height: 350px;
     width: 350px;
+    margin-bottom: 4rem;
 }
 }

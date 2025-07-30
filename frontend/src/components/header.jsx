@@ -1,8 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import "/styles/header.css";
 export function Header() {
+  const navigate = useNavigate()
+
+ 
   return (
     <header>
-      <h1>
+      <h1 onClick={()=> navigate("/")}>
         Sp
         <span>
           <img

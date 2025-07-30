@@ -35,9 +35,11 @@ async function handleStartGame() {
 
   console.log(gameData)
   const [message, setMessage]= useState("")
+  const [messageClass, setMessageClass]= useState("")
   const [fetchedData, setFetchedData]= useState({})
   const [foundCharacters, setFoundCharacters] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false)
+  
 
   useEffect(()=>{
     const fetchGameData = async () => {
@@ -89,7 +91,7 @@ async function handleStartGame() {
 
     //se llama a la funcion que comprueba si el click esta cerca de alguna coordenada de un personaje, en caso de que si se añade a foundCharacters, la tolerancia es
     //el margen de error que se le da al click
-    checkIfCharacterFound(formattedX, formattedY, fetchedData, foundCharacters, setFoundCharacters, setMessage, 1)
+    checkIfCharacterFound(formattedX, formattedY, fetchedData, foundCharacters, setFoundCharacters, setMessage, setMessageClass, 1)
     console.log(foundCharacters.length)
   };
 
@@ -114,12 +116,12 @@ async function handleStartGame() {
                   <li><p>{gameData.characters[1].name }</p><img src={`characters/${gameData.characters[1].img}`}/></li>
                   <li><p>{gameData.characters[2].name }</p><img src={`characters/${gameData.characters[2].img}`}/></li>
                 </ul>
-                <p className="message">{message}</p>
+                <p className = {`message-${messageClass}`}>{message}</p>
               </article>
               <Timer dialogOpen={dialogOpen}/>
             </section>
 
-            <img onClick={handleImageClick} src={`/${selectedGame}.png`} alt={`Big image of a ${selectedGame}`} />
+            <img  draggable="false" onClick={handleImageClick} src={`/${selectedGame}.png`} alt={`Big image of a ${selectedGame}`} />
         </section>
         
     </>

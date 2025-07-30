@@ -3,6 +3,7 @@ import { HomePage } from './pages/home.jsx'
 import { PlayPage } from './pages/playPage.jsx'
 import { LeaderboardPage } from './pages/leaderboardPage.jsx'
 import { Header } from './components/header.jsx'
+import { Footer } from './components/footer.jsx'
 
 export function App() {
 
@@ -16,7 +17,7 @@ export function App() {
           <Route path="/:selectedGame/leaderboard" element={<LeaderboardPage />} />
         </Routes>
       </main>
-
+      <Footer/>
     </>
   )
 }
