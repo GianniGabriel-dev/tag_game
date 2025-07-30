@@ -32,7 +32,7 @@ export function Dialog({ isOpen, onClose, gameId, totalTime }) {
   return (
     <div className="dialog-overlay">
       <div className="dialog-content">
-        <h2>You finded them all</h2>
+        <h2>You finded them all in <span className="totalTime">{totalTime}</span> seconds!</h2>
         <form id="saveScoreForm" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="playerName">Enter your name:</label>

@@ -96,6 +96,9 @@ ul {
 .timer {
     display: none;
 }
+ul{
+    gap:0.5rem
+}
 .stickyMenus{
     flex-direction: column-reverse;
 }

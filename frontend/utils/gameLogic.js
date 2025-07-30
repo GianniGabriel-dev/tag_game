@@ -48,8 +48,7 @@ export const startGame = async (gameId) => {
 
     const data = await response.json();
     return data;
-  } catch (error) {
-    console.error("Error while starting the game:", error);
+  } catch{
     return null;
   }
 };
@@ -69,8 +68,7 @@ export const endGame = async (gameId) => {
 
     const data = await response.json();
     return data;
-  } catch (error) {
-    console.error("Error while ending the game:", error);
+  } catch{
     return null;
   }
 };

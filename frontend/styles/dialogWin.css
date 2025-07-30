@@ -91,3 +91,17 @@ label {
     transform: scale(1);
   }
 }
+.totalTime{
+  display: inline;
+  color: #f1564e;
+  font-size: 2rem;
+  font-weight: 700;
+}
+@media (max-width: 425px) {
+.totalTime{
+  font-size: 1.8rem;
+}
+h2{
+  font-size: 1.8;
+}
+}

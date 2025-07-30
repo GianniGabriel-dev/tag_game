@@ -24,8 +24,6 @@ export function LeaderboardPage() {
         setFetchedLeaderboard(leaderboard);
         const gamesData = await games.json();
         setfetchedGames(gamesData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
@@ -37,7 +35,6 @@ export function LeaderboardPage() {
     fetchedGames?.allGames?.find(
       (game) => game.gameId === parseInt(selectedGame, 10)
     )?.gameName || "";
-
 
   return (
     <>

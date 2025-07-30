@@ -58,7 +58,6 @@ export function PlayPage() {
     handleStartGame();
   }, [gameId]);
 
-
   useEffect(() => {
     const finalizeGame = async () => {
       if (foundCharacters.length === 3) {
