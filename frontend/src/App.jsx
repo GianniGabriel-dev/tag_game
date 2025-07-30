@@ -9,6 +9,7 @@ export function App() {
 
   return (
     <>
+    <div className='layout'>
       <Header/>
       <main>
         <Routes>
@@ -17,7 +18,9 @@ export function App() {
           <Route path="/:selectedGame/leaderboard" element={<LeaderboardPage />} />
         </Routes>
       </main>
-      <Footer/>
+      <Footer/>      
+    </div>
+
     </>
   )
 }

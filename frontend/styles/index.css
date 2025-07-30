@@ -9,17 +9,25 @@
 }
 
 html, body {
-	min-height:100vh;
-	display: grid;
-	grid-template-rows: auto 1fr auto;  
+	height: 100%;
   margin: 0;
   padding: 0; 
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE10+ / Edge */
 }
 
+.layout {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+
+}
 
 main {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   gap: 2rem;
@@ -32,7 +40,6 @@ footer{
   justify-content: center;
   align-items: center;
   height: 3rem;
-
   padding: 1rem;
   margin-top: 1.8rem;
 }
