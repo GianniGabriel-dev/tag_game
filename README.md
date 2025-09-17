@@ -7,16 +7,16 @@ The game consists in finding the characters that are asked inside an image, ther
 ### 📸 Screenshots
 
 #### **Admin View**
-<img src="FRONTEND/assets/home.png" alt="Home View" width="800"/>
+<img src="frontend/assets/home.png" alt="Home View" width="800"/>
 
 #### **Home View**
-<img src="FRONTEND/assets/game.png" alt="Game View" width="800"/>
+<img src="frontend/assets/game.png" alt="Game View" width="800"/>
 
 #### **Win Dialog**
-<img src="FRONTEND/assets/winMessage.png" alt="Win message View" width="800"/>
+<img src="frontend/assets/winMessage.png" alt="Win message View" width="800"/>
 
 #### **Leaderboard View**
-<img src="FRONTEND/assets/leaderboard.png" alt="Leaderboard View" width="800"/>
+<img src="frontend/assets/leaderboard.png" alt="Leaderboard View" width="800"/>
 
 ## ✨ Features
 
