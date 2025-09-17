@@ -29,7 +29,7 @@ The game consists in finding the characters that are asked inside an image, ther
 - After that it checks with the database if a character is in these coords or not 
 
 ### ⚡ Frontend
-- Built with **React + Tailwind**.  
+- Built with **React**.  
 - Modern UI with **responsive design**.  
 - Client-side routing for pages.
 
