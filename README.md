@@ -6,10 +6,10 @@ The game consists in finding the characters that are asked inside an image, ther
 ---
 ### 📸 Screenshots
 
-#### **Admin View**
+#### **Home View**
 <img src="frontend/assets/home.png" alt="Home View" width="800"/>
 
-#### **Home View**
+#### **Game View**
 <img src="frontend/assets/game.png" alt="Game View" width="800"/>
 
 #### **Win Dialog**
